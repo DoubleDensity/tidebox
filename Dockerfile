@@ -31,8 +31,6 @@ WORKDIR /repos
 WORKDIR tidal
 RUN wget https://raw.github.com/yaxu/Tidal/master/tidal.el
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 COPY app /app
 COPY tidal/hello.tidal /repos/tidal/hello.tidal
 
