@@ -1,0 +1,26 @@
+screen -t tab1                                                                                     
+select 0                                                                                           
+stuff "emacs /repos/tidal/hello.tidal^M"                                     
+screen -t tab2                                                                                     
+select 1                                                                                           
+stuff "jack -d dummy"
+screen -t tab2
+select 2
+stuff "cd /repos/Dirt; ./dirt^M                                     
+screen -t tab3
+select 3
+stuff "ffserver -f /repos/ffserver.conf^M"
+screen -t tab4
+select 4
+stuff "ffmpeg -f jack -i ffmpeg -ac 2 http://localhost:8090/feed1.ffm^M"
+
+altscreen on                                                                                       
+term screen-256color                                                                               
+bind ',' prev                                                                                      
+bind '.' next                                                                                      
+#                                                                                                  
+#change the hardstatus settings to give an window list at the bottom of the                        
+#screen, with the time and date and with the current window highlighted                            
+hardstatus alwayslastline                                                                          
+#hardstatus string '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%< %{= kG}%-=%c:%s%{-}'              
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'

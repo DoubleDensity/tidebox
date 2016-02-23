@@ -1,0 +1,77 @@
+
+
+d1 $ brak $ sound "[Bd bd sd/2 [sn sn]?]"
+
+d1 $ sound "bd sn [bd bd bd]"
+
+hush
+
+d3 $ sound "can:2"
+
+d4 $ sound "jazz*8" |+| pan sine1
+
+d5 $ sound "sn sn:2?"
+
+d6 $ sound "tabla(2,5)"
+
+d7 $ sound "drum ~ drum ~ [can can:4 can:5] drum"
+
+d8 $ sound "bd can*2 bd can*3"
+
+hush
+
+cps=50
+
+d6 $ sound "[trump:3(2,1)] [trump:1(3,4)] kurt(2,11)        "
+
+d7 $ sound "kurt(2,4) kurt*2? kurt ~ kurt(1,3)"
+
+d8 $ brak $ sound "bd(1,5) sn:2 ~? ~ can(4,7)"
+
+d1 $ sound  "[house ~ sn:2]/2 ~  [house sn:2]/2 ~"
+
+d1 $ sound "[house*2 ~ house ~]/2"
+
+d2 $ sound "[~ sn:2 ~ ! sn:2 ~]/2"
+
+d3 $ stack [sound "bd sn:2" , sound "casio:2 casio:1 house:2*1"]
+
+hush
+
+d5  $ stack [sound "[bd sn:2 casio*2 bd ~ sn:2 casio ~]/2"]
+
+d6 $  sound "[casio:4*2? ~ kurt?]/2" |+| vowel "[a e o a i?]" |+| delay "50" 
+
+d7 $ sound "~ ~ ~ casio:11?"
+
+d2 $ stack [sound "[ bd:7  ~ ]", sound "[~ sn:2]", sound "[casio:7*2 ~ ] ", sound "[~ ~ ~ jazz:6]"]
+
+d3 $ stack [sound "[pluck:7 ~  ~ !]/4", every 2 $ sound "[~ pluck:4*4 ~ ! !]/4", sound "[~ ~ pluck:8 ~]/2", sound "[~ ~ ~ pluck:9]/2", sound "[~ ~ pluck:10? ~ ]/2"] |+| delay "10"
+
+
+
+hush
+
+d2 $ sound "casio*6/2"
+
+d4 $ sound  "~ sn:2 ~ ~ sn:2 ~ "
+
+d3 $ sound "koy(1,7)"
+
+
+  
+d1 $ silence
+
+d2 $ silence
+
+d3 $ silence
+
+d4 $ silence
+
+d5 $ silence
+
+d6 $ silence
+
+d7 $ silence
+
+d8 $ silence
