@@ -1,27 +1,30 @@
-screen -t tidal                                                                                     
-select 0                                                                                           
-stuff "emacs /repos/tidal/hello.tidal^M"                                     
-screen -t jackd                                                                                     
-select 1                                                                                           
-stuff "sh /repos/jackup.sh^M"
+screen -t tidal
+select 0
+stuff "emacs /work/hello.tidal^M"
+screen -t jackd
+select 1
+stuff "sh ~/scripts/jackup.sh^M"
 screen -t dirt
 select 2
-stuff "sh /repos/dirtup.sh^M                                     
+stuff "sh ~/scripts/dirtup.sh^M
 screen -t ffserver
 select 3
-stuff "ffserver -f /repos/ffserver.conf^M"
+stuff "ffserver -f ~/ffserver.conf^M"
 screen -t ffmpeg
 select 4
-stuff "ffmpeg -f jack -i ffmpeg -ac 2 http://localhost:8090/feed1.ffm^M"
+stuff "sleep 5; ffmpeg -f jack -i ffmpeg -ac 2 http://localhost:8090/feed1.ffm^M"
+screen -t files
+select 5
+stuff "cd /work^M"
 select 0
 
-altscreen on                                                                                       
-term screen-256color                                                                               
-bind ',' prev                                                                                      
-bind '.' next                                                                                      
-#                                                                                                  
-#change the hardstatus settings to give an window list at the bottom of the                        
-#screen, with the time and date and with the current window highlighted                            
-hardstatus alwayslastline                                                                          
-#hardstatus string '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%< %{= kG}%-=%c:%s%{-}'              
+altscreen on
+term screen-256color
+bind ',' prev
+bind '.' next
+#
+#change the hardstatus settings to give an window list at the bottom of the
+#screen, with the time and date and with the current window highlighted
+hardstatus alwayslastline
+#hardstatus string '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%< %{= kG}%-=%c:%s%{-}'
 hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
