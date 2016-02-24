@@ -1,12 +1,12 @@
 screen -t tidal
 select 0
-stuff "emacs /work/hello.tidal^M"
+stuff "emacs^M"
 screen -t jackd
 select 1
 stuff "sh ~/scripts/jackup.sh^M"
 screen -t dirt
 select 2
-stuff "sh ~/scripts/dirtup.sh^M
+stuff "sh ~/scripts/dirtup.sh^M"
 screen -t ffserver
 select 3
 stuff "ffserver -f ~/ffserver.conf^M"
@@ -19,7 +19,7 @@ stuff "cd /work^M"
 select 0
 
 altscreen on
-term screen-256color
+term vt100
 bind ',' prev
 bind '.' next
 #

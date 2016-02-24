@@ -7,8 +7,26 @@
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
-          ("melpa-stable" . "http://stable.melpa.org/packages/")))))
+("melpa-stable" . "http://stable.melpa.org/packages/")))))
 
+;; Hide splash-screen and startup-message
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+
+(add-to-list 'load-path "/repos/tidal")
 (add-to-list 'load-path "/work")
 (require 'haskell-mode)
 (require 'tidal)
+
+(find-file "/work/init.tidal")
+
+(fset 'stidal
+"\C-c\C-s")
+
+(execute-kbd-macro (symbol-function 'stidal))
+
+(server-start)
+
+(find-file "/work/hello.tidal")
+
+(delete-other-windows)
