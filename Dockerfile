@@ -6,7 +6,7 @@ MAINTAINER Buttetsu Batou <doubledense@gmail.com>
 
 RUN dnf groupinstall -y "C Development Tools and Libraries"
 RUN dnf install -y git tree zsh wget vim man sudo
-RUN dnf install -y libsndfile-devel libsamplerate-devel liblo-devel jack-audio-connection-kit-devel alsa-lib-devel xz htop grep procps-ng yasm screen
+RUN dnf install -y libsndfile-devel libsamplerate-devel liblo-devel jack-audio-connection-kit-devel jack-audio-connection-kit-example-clients alsa-lib-devel xz htop grep procps-ng yasm screen
 RUN dnf install -y cabal-install ghc-Cabal-devel
 
 # Install editor
@@ -53,6 +53,8 @@ RUN chown -R dev:dev /logs
 
 ENV HOME /home/dev
 WORKDIR /home/dev
+COPY scripts/jackup.sh /repos/jackup.sh
+COPY scripts/dirtup.sh /repos/dirtup.sh
 COPY configs/emacsrc /home/dev/.emacs
 COPY configs/screenrc /home/dev/.screenrc
 COPY configs/ffserver.conf /repos/ffserver.conf
@@ -65,8 +67,6 @@ USER dev
 # Install Tidal
 RUN cabal update
 RUN cabal install tidal
-
-RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Expose port for ffserver streaming
 EXPOSE 8090

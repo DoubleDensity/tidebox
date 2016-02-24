@@ -3,16 +3,17 @@ select 0
 stuff "emacs /repos/tidal/hello.tidal^M"                                     
 screen -t jackd                                                                                     
 select 1                                                                                           
-stuff "jackd -d dummy^M"
+stuff "sh /repos/jackup.sh^M"
 screen -t dirt
 select 2
-stuff "cd /repos/Dirt; ./dirt^M                                     
+stuff "sh /repos/dirtup.sh^M                                     
 screen -t ffserver
 select 3
 stuff "ffserver -f /repos/ffserver.conf^M"
 screen -t ffmpeg
 select 4
 stuff "ffmpeg -f jack -i ffmpeg -ac 2 http://localhost:8090/feed1.ffm^M"
+select 0
 
 altscreen on                                                                                       
 term screen-256color                                                                               
