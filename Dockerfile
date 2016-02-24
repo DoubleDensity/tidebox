@@ -56,6 +56,7 @@ WORKDIR /home/dev
 COPY configs/emacsrc /home/dev/.emacs
 COPY configs/screenrc /home/dev/.screenrc
 COPY configs/ffserver.conf /repos/ffserver.conf
+COPY configs/zprofile /home/dev/.zprofile
 
 RUN ln -s /repos /home/dev/repos
 

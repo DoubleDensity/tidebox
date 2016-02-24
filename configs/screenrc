@@ -1,16 +1,16 @@
-screen -t tab1                                                                                     
+screen -t tidal                                                                                     
 select 0                                                                                           
 stuff "emacs /repos/tidal/hello.tidal^M"                                     
-screen -t tab2                                                                                     
+screen -t jackd                                                                                     
 select 1                                                                                           
 stuff "jackd -d dummy^M"
-screen -t tab2
+screen -t dirt
 select 2
 stuff "cd /repos/Dirt; ./dirt^M                                     
-screen -t tab3
+screen -t ffserver
 select 3
 stuff "ffserver -f /repos/ffserver.conf^M"
-screen -t tab4
+screen -t ffmpeg
 select 4
 stuff "ffmpeg -f jack -i ffmpeg -ac 2 http://localhost:8090/feed1.ffm^M"
 
