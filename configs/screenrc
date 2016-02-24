@@ -3,7 +3,7 @@ select 0
 stuff "emacs /repos/tidal/hello.tidal^M"                                     
 screen -t tab2                                                                                     
 select 1                                                                                           
-stuff "jack -d dummy"
+stuff "jackd -d dummy^M"
 screen -t tab2
 select 2
 stuff "cd /repos/Dirt; ./dirt^M                                     

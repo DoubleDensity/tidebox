@@ -18,11 +18,18 @@ RUN git clone --recursive https://github.com/tidalcycles/Dirt.git
 WORKDIR Dirt
 RUN make install
 
+# Install libmp3lame
+WORKDIR /repos
+RUN git clone https://github.com/rbrito/lame.git
+WORKDIR lame
+RUN ./configure --prefix=/usr
+RUN make install
+
 # Install ffmpeg
 WORKDIR /repos
 RUN git clone git://source.ffmpeg.org/ffmpeg.git ffmpeg
 WORKDIR ffmpeg
-RUN ./configure --enable-indev=jack --enable-nonfree --prefix=/usr
+RUN ./configure --enable-indev=jack --enable-libmp3lame --enable-nonfree --prefix=/usr
 RUN make install
 
 # Pull Tidal Emacs binding
