@@ -1,0 +1,2 @@
+pushd /repos/Dirt
+./dirt
