@@ -18,21 +18,23 @@ First you will want to start the container:
 This container should be run in interactive terminal mode with `-it` mode so that you can interact with the Emacs session, although it is not a requirement. 
 You do not need to use `--net=host` either although it may make it easier for you to reach the stream from a remote host depending on your Docker networking setup.
 
+Once the container is started the FFserver process providing the audio stream is exposed on port 8090.
+
 ![Tidebox demo](demo.gif)
 
-Then you can connect to it with any media player which supports streaming mp3 such as VLC, iTunes, MPlayer, mpg123, etc. 
+Then you can connect to the stream with any media player which supports streaming mp3 such as VLC, iTunes, MPlayer, mpg123, etc. 
 
 Here is an example with MPlayer: 
     
     mplayer http://localhost:8090/stream.mp3
     
-By default it will start to play a test Tidal audio sequence automatically within approximately ten seconds after the container has launched so you can verify audio connectivity.
+By default Tidebox will start to play a test Tidal audio sequence automatically within approximately ten seconds after the container has launched so you can verify audio connectivity.
 
 ## Controls
 
 The various components of Tidebox are running in separate windows within the GNU Screen terminal window manager, and should initialize automatically. 
 
-The Emacs Tidal environment is the default screen (0), but you can find the additional components JACK, Dirt, ffmpeg, and ffserver on windows 1-4.
+The Emacs / Haskell Tidal environment is the default screen (0), but you can find the additional components JACK, Dirt, ffmpeg, and ffserver on windows 1-4.
 
 Window 5 is currently set aside as an interactive shell for working with and managing Tidal files or anything else you may wish to pull down or manipulate for use in your session.
 
