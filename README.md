@@ -18,6 +18,8 @@ First you will want to start the container:
 This container should be run in interactive terminal mode with `-it` mode so that you can interact with the Emacs session, although it is not a requirement. 
 You do not need to use `--net=host` either although it may make it easier for you to reach the stream from a remote host depending on your Docker networking setup.
 
+![Tidebox demo](demo.gif)
+
 Then you can connect to it with any media player which supports streaming mp3 such as VLC, iTunes, MPlayer, mpg123, etc. 
 
 Here is an example with MPlayer: 
@@ -38,10 +40,10 @@ You can switch between the Screen windows using `CTRL-,` and `CTRL-.` forward an
 
 ## References
 
-[Tidal](http://tidal.lurk.org)
-[Dirt synth](https://github.com/tidalcycles/Dirt)
-[JACK Audio Connection Kit](http://www.jackaudio.org/)
-[FFmpeg](https://www.ffmpeg.org/)
-[GNU Emacs](https://www.gnu.org/software/emacs/)
-[GNU Screen](https://www.gnu.org/software/screen/)
-[TOPLAP The Home of Live Coding](http://toplap.org/)
+- [Tidal](http://tidal.lurk.org)
+- [Dirt synth](https://github.com/tidalcycles/Dirt)
+- [JACK Audio Connection Kit](http://www.jackaudio.org/)
+- [FFmpeg](https://www.ffmpeg.org/)
+- [GNU Emacs](https://www.gnu.org/software/emacs/)
+- [GNU Screen](https://www.gnu.org/software/screen/)
+- [TOPLAP The Home of Live Coding](http://toplap.org/)
