@@ -4,7 +4,7 @@
 
 > A complete Tidal musical live coding and audio streaming environment inside Docker
 
-Run Tidal on any available compute node and stream the output to any target. No sound hardware or elevated permissions are required on the Docker host.
+Run Tidal immediately on any available compute node and stream the output to any target with. No sound hardware or elevated permissions are required on the Docker host.
 This allows for the use of very-low end hardware to control and compose the session while harnessing greater resources on remote hosts, clusters and public cloud infrastructure.
 
 Many thanks to Tidal and the entire live coding community for making such exciting and fun software!
