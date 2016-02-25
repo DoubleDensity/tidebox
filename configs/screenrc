@@ -1,3 +1,5 @@
+defshell -zsh
+
 screen -t tidal
 select 0
 stuff "emacs^M"
@@ -15,16 +17,10 @@ select 4
 stuff "sleep 5; ffmpeg -f jack -i ffmpeg -ac 2 http://localhost:8090/feed1.ffm^M"
 screen -t files
 select 5
-stuff "cd /work^M"
+stuff "cd /work/scratch^M"
 select 0
 
-altscreen on
-term vt100
+altscreen off
+term screen-256color 
 bind ',' prev
 bind '.' next
-#
-#change the hardstatus settings to give an window list at the bottom of the
-#screen, with the time and date and with the current window highlighted
-hardstatus alwayslastline
-#hardstatus string '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%< %{= kG}%-=%c:%s%{-}'
-hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'

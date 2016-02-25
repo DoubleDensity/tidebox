@@ -10,7 +10,7 @@ RUN dnf install -y libsndfile-devel libsamplerate-devel liblo-devel jack-audio-c
 RUN dnf install -y cabal-install ghc-Cabal-devel
 
 # Install editor
-RUN dnf -y install emacs-nox emacs-haskell-mode
+RUN dnf -y install xemacs-nox emacs-haskell-mode
 
 # Build Dirt synth
 WORKDIR /repos
@@ -54,10 +54,6 @@ RUN echo "tidal ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 VOLUME /repos
 RUN chown -R tidal:tidal /repos
 
-# Volume for Tidal files, etc.
-VOLUME /work
-RUN chown -R tidal:tidal /work
-
 USER tidal
 
 ENV HOME /home/tidal
@@ -70,14 +66,26 @@ RUN ln -s /work /home/tidal/work
 RUN cabal update
 RUN cabal install tidal
 
+# Install Oh-My-Zsh
+RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Disable Zsh automatic window titling
+RUN sed -i 's/# DISABLE_AUTO_TITLE="true"/DISABLE_AUTO_TITLE="true"/g' /home/tidal/.zshrc
+
 # Install startup scripts & default configurations
 COPY scripts /home/tidal/scripts
 
 COPY configs/emacsrc /home/tidal/.emacs
 COPY configs/screenrc /home/tidal/.screenrc
 COPY configs/ffserver.conf /home/tidal/ffserver.conf
-COPY configs/zshrc /home/tidal/.zshrc
 
-COPY tidal/hello.tidal /home/tidal/work/hello.tidal
+COPY tidal/init.tidal /home/tidal/init.tidal
+COPY tidal/hello.tidal /home/tidal/hello.tidal
 
-ENTRYPOINT /bin/zsh
+# Prepare scratch workspace for version control
+RUN sudo mkdir -p /work/scratch
+RUN sudo chown -R tidal:tidal /work
+WORKDIR /work/scratch
+RUN git init
+
+ENTRYPOINT /usr/bin/screen -U
