@@ -4,10 +4,10 @@
 
 > A complete Tidal musical live coding and audio streaming environment inside Docker
 
-Run Tidal immediately on any available compute node and stream the output to any target with. No sound hardware or elevated permissions are required on the Docker host.
-This allows for the use of very-low end hardware to control and compose the session while harnessing greater resources on remote hosts, clusters and public cloud infrastructure.
+Run Tidal immediately on any available compute node and stream the output to any target. No sound hardware or elevated permissions are required on the Docker host.
+This allows for the use of very-low end performance hardware to control and compose the session while harnessing greater resources on remote hosts, clusters and public cloud infrastructure.
 
-Many thanks to Tidal and the entire live coding community for making such exciting and fun software!
+Many thanks to Tidal and the entire live coding community for making such fun and exciting software!
 
 ## Getting started
 
@@ -18,7 +18,7 @@ First you will want to start the container:
 This container should be run in interactive terminal mode with `-it` mode so that you can interact with the Emacs session, although it is not a requirement. 
 You do not need to use `--net=host` either although it may make it easier for you to reach the stream from a remote host depending on your Docker networking setup.
 
-Once the container is started the FFserver process providing the audio stream is exposed on port 8090.
+Once the container is started, the FFserver process providing the audio stream is exposed on port 8090.
 
 ![Tidebox demo](demo.gif)
 
