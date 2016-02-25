@@ -15,8 +15,11 @@ First you will want to start the container:
   
     docker run -it --net=host quay.io/doubledensity/tidebox
 
-This container should be run in interactive terminal mode with `-it` mode so that you can interact with the Emacs session, although it is not a requirement. 
-You do not need to use `--net=host` either although it may make it easier for you to reach the stream from a remote host depending on your Docker networking setup.
+Tidebox should be run in interactive terminal mode with `-it` so that you can interact with the Emacs session. 
+
+In this initial release a controlling terminal is required, and running the container as a daemon is not yet functional. I am working to augment this so that daemonization is supported to facilitate running on the Google Container Engine service.
+
+You do not need to use `--net=host` although it may make it easier for you to reach the stream from a remote host depending on your Docker networking setup.
 
 Once the container is started, the FFserver process providing the audio stream is exposed on port 8090.
 
