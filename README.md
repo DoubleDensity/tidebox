@@ -48,7 +48,7 @@ Here is an example of connecting to the stream with MPlayer:
 ```bash    
 mplayer http://172.17.0.2:8090/stream.mp3
 ```
-* You may need to find the IP address of your Tidebox container using the Docker `inspect` command if you don't use the --net=host option    
+* You may need to find the IP address of your Tidebox container using the Docker `inspect` command if you don't use the `--net=host` option    
     
 By default Tidebox will start to play a test Tidal audio sequence automatically when you first login to the container so you can verify audio connectivity.
 
