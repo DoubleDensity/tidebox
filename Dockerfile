@@ -10,7 +10,7 @@ RUN dnf install -y libsndfile-devel libsamplerate-devel liblo-devel jack-audio-c
 RUN dnf install -y cabal-install ghc-Cabal-devel
 
 # Install editor
-RUN dnf -y install xemacs-nox emacs-haskell-mode
+RUN dnf -y install emacs-nox emacs-haskell-mode
 
 # Build Dirt synth
 WORKDIR /repos
