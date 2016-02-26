@@ -99,5 +99,6 @@ RUN git init
 USER root
 RUN echo "/usr/bin/screen" >> /etc/shells
 RUN usermod -s /usr/bin/screen tidal
+RUN chown -R tidal.tidal /home/tidal/*.tidal
 
 CMD ["/usr/bin/supervisord"]

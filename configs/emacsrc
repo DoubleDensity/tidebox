@@ -20,6 +20,8 @@
 (require 'haskell-mode)
 (require 'tidal)
 
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
 (find-file "~/init.tidal")
 
 (fset 'stidal
