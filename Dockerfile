@@ -60,8 +60,6 @@ RUN wget https://raw.github.com/yaxu/Tidal/master/tidal.el
 # Create and configure Tidal user
 RUN useradd tidal -s /bin/zsh
 RUN echo 'tidal:livecoding' | chpasswd
-RUN echo "/usr/bin/screen" >> /etc/shells
-RUN usermod -s /usr/bin/screen tidal
 RUN echo "tidal ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER tidal
@@ -96,5 +94,9 @@ RUN sudo mkdir -p /work/scratch
 RUN sudo chown -R tidal:tidal /work
 WORKDIR /work/scratch
 RUN git init
+
+# Set Tidal shell to Screen
+RUN echo "/usr/bin/screen" >> /etc/shells
+RUN usermod -s /usr/bin/screen tidal
 
 CMD ["/usr/bin/supervisord"]

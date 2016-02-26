@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tidebox
+  labels:
+    app: tidebox
+spec:
+  containers:
+  - name: tidebox
+    image: quay.io/doubledensity/tidebox
+    ports:
+    - containerPort: 8090
+  imagePullSecrets:
+    - name: myregistrykey
