@@ -13,7 +13,7 @@ Many thanks to Tidal and the entire live coding community for making such fun an
 
 First you will want to start the container:
   
-    docker run -it --net=host quay.io/doubledensity/tidebox
+    docker run -it --net=host quay.io/doubledensity/tidebox:0.1
 
 Tidebox should be run in interactive terminal mode with `-it` so that you can interact with the Emacs session. 
 
