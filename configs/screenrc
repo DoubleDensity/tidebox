@@ -5,16 +5,16 @@ select 0
 stuff "emacs^M"
 screen -t jackd
 select 1
-stuff "sh ~/scripts/jackup.sh^M"
+stuff "tail -f ~/jackd.log^M"
 screen -t dirt
 select 2
-stuff "sh ~/scripts/dirtup.sh^M"
+stuff "tail -f ~/dirt.log^M"
 screen -t ffserver
 select 3
-stuff "ffserver -f ~/ffserver.conf^M"
+stuff "tail -f ~/ffserver.log^M"
 screen -t ffmpeg
 select 4
-stuff "sleep 5; ffmpeg -f jack -i ffmpeg -ac 2 http://localhost:8090/feed1.ffm^M"
+stuff "tail -f ~/ffmpeg.log^M"
 screen -t files
 select 5
 stuff "cd /work/scratch^M"

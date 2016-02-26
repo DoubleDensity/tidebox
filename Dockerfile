@@ -6,7 +6,7 @@ MAINTAINER Buttetsu Batou <doubledense@gmail.com>
 
 RUN dnf groupinstall -y "C Development Tools and Libraries"
 RUN dnf install -y git zsh wget man sudo
-RUN dnf install -y libsndfile-devel libsamplerate-devel liblo-devel jack-audio-connection-kit-devel jack-audio-connection-kit-example-clients alsa-lib-devel xz htop grep procps-ng yasm screen
+RUN dnf install -y libsndfile-devel libsamplerate-devel liblo-devel jack-audio-connection-kit-devel jack-audio-connection-kit-example-clients alsa-lib-devel xz htop grep procps-ng yasm screen supervisor openssh-server
 RUN dnf install -y cabal-install ghc-Cabal-devel
 
 # Install editor
@@ -36,7 +36,19 @@ RUN make install
 WORKDIR /repos
 RUN rm -fr ffmpeg
 
-# Expose port for ffserver streaming
+# Install Tidebox supervisord config
+COPY configs/tidebox.ini /etc/supervisord.d/tidebox.ini
+
+# Initialize and configure sshd
+RUN ssh-keygen -b 1024 -t rsa -f /etc/ssh/ssh_host_key
+RUN ssh-keygen -b 1024 -t rsa -f /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -b 1024 -t dsa -f /etc/ssh/ssh_host_dsa_key
+RUN sed -i 's/UsePAM\syes/UsePAM no/' /etc/ssh/sshd_config
+
+# Expose sshd service
+EXPOSE 22
+
+# Expose ffserver streaming service
 EXPOSE 8090
 
 # Pull Tidal Emacs binding
@@ -45,14 +57,12 @@ WORKDIR /repos
 WORKDIR tidal
 RUN wget https://raw.github.com/yaxu/Tidal/master/tidal.el
 
-# Setup home environment
+# Create and configure Tidal user
 RUN useradd tidal -s /bin/zsh
-
+RUN echo 'tidal:livecoding' | chpasswd
+RUN echo "/usr/bin/screen" >> /etc/shells
+RUN usermod -s /usr/bin/screen tidal
 RUN echo "tidal ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-# Volume for source repos and building
-VOLUME /repos
-RUN chown -R tidal:tidal /repos
 
 USER tidal
 
@@ -72,13 +82,12 @@ RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/too
 # Disable Zsh automatic window titling
 RUN sed -i 's/# DISABLE_AUTO_TITLE="true"/DISABLE_AUTO_TITLE="true"/g' /home/tidal/.zshrc
 
-# Install startup scripts & default configurations
-COPY scripts /home/tidal/scripts
-
+# Install default configurations
 COPY configs/emacsrc /home/tidal/.emacs
 COPY configs/screenrc /home/tidal/.screenrc
 COPY configs/ffserver.conf /home/tidal/ffserver.conf
 
+# Install default Tidal files
 COPY tidal/init.tidal /home/tidal/init.tidal
 COPY tidal/hello.tidal /home/tidal/hello.tidal
 
@@ -88,4 +97,4 @@ RUN sudo chown -R tidal:tidal /work
 WORKDIR /work/scratch
 RUN git init
 
-ENTRYPOINT /usr/bin/screen -U
+CMD ["/usr/bin/supervisord"]
