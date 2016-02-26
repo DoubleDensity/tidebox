@@ -96,6 +96,7 @@ WORKDIR /work/scratch
 RUN git init
 
 # Set Tidal shell to Screen
+USER root
 RUN echo "/usr/bin/screen" >> /etc/shells
 RUN usermod -s /usr/bin/screen tidal
 
