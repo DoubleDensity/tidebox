@@ -10,5 +10,8 @@ spec:
     image: quay.io/doubledensity/tidebox
     ports:
     - containerPort: 8090
+      name: ffserver
+    - containerPort: 22
+      name: sshd
   imagePullSecrets:
     - name: myregistrykey
