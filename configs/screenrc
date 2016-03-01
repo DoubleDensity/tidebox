@@ -17,7 +17,7 @@ select 4
 stuff "tail -f ~/ffmpeg.log^M"
 screen -t files
 select 5
-stuff "cd /work/scratch^M"
+stuff "cd /work/scratchpool^M"
 select 0
 
 altscreen off

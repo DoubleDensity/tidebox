@@ -90,10 +90,21 @@ COPY tidal/init.tidal /home/tidal/init.tidal
 COPY tidal/hello.tidal /home/tidal/hello.tidal
 
 # Prepare scratch workspace for version control
-RUN sudo mkdir -p /work/scratch
+RUN sudo mkdir /work
 RUN sudo chown -R tidal:tidal /work
-WORKDIR /work/scratch
-RUN git init
+WORKDIR /work
+RUN mkdir /home/tidal/.ssh
+ADD https://raw.githubusercontent.com/DoubleDensity/scratchpool/master/id_rsa-scratchpool /home/tidal/.ssh/id_rsa
+RUN sudo chmod 600 /home/tidal/.ssh/id_rsa
+RUN sudo chown tidal.tidal /home/tidal/.ssh/id_rsa
+COPY configs/sshconfig /home/tidal/.ssh/config
+RUN sudo chmod 600 /home/tidal/.ssh/config
+RUN sudo chown tidal.tidal /home/tidal/.ssh/config
+RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+RUN git clone git@github.com:DoubleDensity/scratchpool.git
+WORKDIR /work/scratchpool
+RUN git config user.name "Tidebox User"
+RUN git config user.email "tidal@jankycloud.com"
 
 # Set Tidal shell to Screen
 USER root
